@@ -4,8 +4,7 @@ import ListItem from './ListItem';
 class List extends Component {
   render() {
     return (
-      <div className="App">
-        List
+      <div className="List">
         <ListItem />
       </div>
     );

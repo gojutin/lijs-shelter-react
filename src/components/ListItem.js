@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class ListItem extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="List-Item">
         List Item
       </div>
     );
