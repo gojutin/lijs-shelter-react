@@ -22,19 +22,13 @@ class Lists extends Component {
   render() {
     return (
       <div className="Lists">
-        <Col xsHidden md={2} />
-
-        <Col xs={6} md={3}>
+        <Col xs={6} md={6}>
           <List listName={"Puppies"} listData={fbMockPuppies} />
         </Col>
 
-        <Col xsHidden md={2} />
-        
-        <Col xs={6} md={3}>
+        <Col xs={6} md={6}>
           <List listName={"Kittens"} listData={fbMockKittens} />
         </Col>
-
-        <Col xsHidden md={2} />
       </div>
     );
   }
