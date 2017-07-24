@@ -22,11 +22,11 @@ class Lists extends Component {
   render() {
     return (
       <div className="Lists">
-        <Col xs={6} md={6}>
+        <Col xs={6} md={4}>
           <List listName={"Puppies"} listData={fbMockPuppies} />
         </Col>
 
-        <Col xs={6} md={6}>
+        <Col xs={6} md={4}>
           <List listName={"Kittens"} listData={fbMockKittens} />
         </Col>
       </div>
