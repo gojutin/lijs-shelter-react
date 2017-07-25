@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
-import List from './components/List';
 import Lists from './components/Lists';
 import { firebaseAuth } from './auth';
 

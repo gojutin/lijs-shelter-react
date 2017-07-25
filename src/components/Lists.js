@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import List from './List';
 import { Col } from 'react-bootstrap';
+import { fetchDogs, fetchCats } from '../dbFuncs';
 
 const fbMockPuppies = [
     {id: 0, name: "buster", image: "www.image.com"},
@@ -19,6 +20,14 @@ const fbMockKittens = [
 ];
 
 class Lists extends Component {
+  componentWillMount() {
+    let dogs = fetchDogs();
+    let cats = fetchCats();
+
+    console.log(dogs);
+    console.log(cats);
+  }
+
   render() {
     return (
       <div className="Lists">
