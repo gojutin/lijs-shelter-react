@@ -40,12 +40,12 @@ class AuthModal extends Component {
     return (
 
       <Modal show={this.props.showAuthModal} onHide={this.props.toggleAuthModal}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>
-            {this.props.authType}
+            {this.props.authType === "login" ? "Log In" : "Sign Up"}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{padding: 10 + "px"}}>
           <Form horizontal onSubmit={this.onSubmit}>
             <FormGroup >
               <Col sm={12}>

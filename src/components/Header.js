@@ -13,7 +13,7 @@ class Header extends Component {
   toggleAuthModal = (type) => {
     this.setState(prevState => ({
       showAuthModal: !prevState.showAuthModal,
-      authType: type,
+      authType: type ? type : this.state.authType,
     }))
   }
 
