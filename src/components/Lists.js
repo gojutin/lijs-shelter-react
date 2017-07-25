@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import List from './List';
+import AddModal from './AddModal';
 import { Col } from 'react-bootstrap';
 import { fetchDogs, fetchCats } from '../dbFuncs';
 
@@ -20,6 +21,16 @@ const fbMockKittens = [
 ];
 
 class Lists extends Component {
+  constructor(props) {
+    super(props);
+    this.toggleAddModal = this.toggleAddModal.bind(this);
+  }
+
+  state = {
+    showAddModal: false,
+    animal: "",
+  }
+
   componentWillMount() {
     let dogs = fetchDogs();
     let cats = fetchCats();
@@ -28,16 +39,25 @@ class Lists extends Component {
     console.log(cats);
   }
 
+  toggleAddModal = (animal) => {
+    this.setState(prevState => ({
+      showAddModal: !prevState.showAddModal,
+      animal: animal,
+    }));
+  }
+
   render() {
     return (
       <div className="Lists">
         <Col xs={6} md={4}>
-          <List listName={"Puppies"} listData={fbMockPuppies} />
+          <List listName={"Dogs"} listData={fbMockPuppies} toggleAddModal={this.toggleAddModal.bind(this)} />
         </Col>
 
         <Col xs={6} md={4}>
-          <List listName={"Kittens"} listData={fbMockKittens} />
+          <List listName={"Cats"} listData={fbMockKittens} toggleAddModal={this.toggleAddModal} />
         </Col>
+
+        <AddModal {...this.state} toggleAddModal={this.toggleAddModal} />
       </div>
     );
   }
