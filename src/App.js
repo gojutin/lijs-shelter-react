@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import List from './components/List';
+import Lists from './components/Lists';
 import { firebaseAuth } from './auth';
 
 class App extends Component {
@@ -19,9 +20,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
        <Header {...this.state} />
-       <List {...this.state} />
+       <Lists {...this.state} />
       </div>
     );
   }
