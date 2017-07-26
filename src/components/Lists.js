@@ -1,34 +1,53 @@
 import React, { Component } from 'react';
 import List from './List';
+import AddModal from './AddModal';
 import { Col } from 'react-bootstrap';
-
-const fbMockPuppies = [
-    {id: 0, name: "buster", image: "www.image.com"},
-    {id: 1, name: "canoli", image: "www.image.com"},
-    {id: 2, name: "thomas", image: "www.image.com"},
-    {id: 3, name: "robert", image: "www.image.com"},
-    {id: 4, name: "killer", image: "www.image.com"},
-];
-
-const fbMockKittens = [
-    {id: 0, name: "frisky", image: "www.image.com"},
-    {id: 1, name: "terrence", image: "www.image.com"},
-    {id: 2, name: "mini", image: "www.image.com"},
-    {id: 3, name: "kay", image: "www.image.com"},
-    {id: 4, name: "mr bigglesworth", image: "www.image.com"},
-];
+import { fetchDogs, fetchCats } from '../dbFuncs';
 
 class Lists extends Component {
+  constructor(props) {
+    super(props);
+    this.toggleAddModal = this.toggleAddModal.bind(this);
+  }
+
+  state = {
+    showAddModal: false,
+    animal: "",
+    dogs: [],
+    cats: [],
+  }
+
+  componentWillMount() {
+    // Fetch dog and cat arrays
+    let dogs = fetchDogs();
+    let cats = fetchCats();
+
+    this.setState({
+      dogs: dogs,
+      cats: cats,
+    });
+  }
+
+  // Add dog and cat arrays to component state
+  toggleAddModal = (animal) => {
+    this.setState(prevState => ({
+      showAddModal: !prevState.showAddModal,
+      animal: animal,
+    }));
+  }
+
   render() {
     return (
       <div className="Lists">
         <Col xs={6} md={4}>
-          <List listName={"Puppies"} listData={fbMockPuppies} />
+          <List listName={"Dogs"} listData={this.state.dogs} toggleAddModal={this.toggleAddModal} />
         </Col>
 
         <Col xs={6} md={4}>
-          <List listName={"Kittens"} listData={fbMockKittens} />
+          <List listName={"Cats"} listData={this.state.cats} toggleAddModal={this.toggleAddModal} />
         </Col>
+
+        <AddModal {...this.state} toggleAddModal={this.toggleAddModal} />
       </div>
     );
   }

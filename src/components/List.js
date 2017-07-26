@@ -16,7 +16,7 @@ class List extends Component {
       <div className="List">
         <div className="List-Header">
           <h1>{this.props.listName}</h1>
-          <Glyphicon glyph="plus" />
+          <Glyphicon glyph="plus" onClick={() => this.props.toggleAddModal(this.props.listName)} />
         </div>
 
         {this.mapListItems()}
