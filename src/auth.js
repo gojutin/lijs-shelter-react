@@ -1,14 +1,13 @@
 import firebase from 'firebase'
-import { config } from './firebase_config.js' 
+import config from './firebase_config.js' 
 
 firebase.initializeApp(config);
 
 export const ref = firebase.database().ref();
 export const firebaseAuth = firebase.auth;
 
-export function auth (email, pw, companyType) {
+export function signup (email, pw, companyType) {
   return firebaseAuth().createUserWithEmailAndPassword(email, pw)
-    .then((user) => saveUser(user, companyType))
 }
 
 export function logout () {
@@ -23,18 +22,5 @@ export function resetPassword (email) {
   return firebaseAuth().sendPasswordResetEmail(email)
 }
 
-export function saveUser (user, companyType) {
-  return ref.child(`users/${user.uid}/info`)
-    .set({
-      email: user.email,
-      uid: user.uid,
-      companyType,
-    })
-    .then(() => user)
-}
+export const currentUser = firebaseAuth().currentUser;
 
-export function updateUser (uid, userObj) {
-  return ref.child(`users/${uid}/info`)
-    .update(userObj)
-    .then(() => uid)
-}
