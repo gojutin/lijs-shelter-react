@@ -39,6 +39,7 @@ class AddModal extends Component {
             Add {this.props.animal}
           </Modal.Title>
         </Modal.Header>
+
         <Modal.Body style={{padding: 10 + "px"}}>
           <Form horizontal onSubmit={this.onSubmit}>
             <FormGroup >
@@ -72,7 +73,7 @@ class AddModal extends Component {
                   Submit
                 </Button>
               </Col>
-            </FormGroup>
+            </FormGroup>  
           </Form>
         </Modal.Body>
       </Modal>

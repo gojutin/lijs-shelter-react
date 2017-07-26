@@ -4,22 +4,6 @@ import AddModal from './AddModal';
 import { Col } from 'react-bootstrap';
 import { fetchDogs, fetchCats } from '../dbFuncs';
 
-const fbMockPuppies = [
-    {id: 0, name: "buster", image: "www.image.com"},
-    {id: 1, name: "canoli", image: "www.image.com"},
-    {id: 2, name: "thomas", image: "www.image.com"},
-    {id: 3, name: "robert", image: "www.image.com"},
-    {id: 4, name: "killer", image: "www.image.com"},
-];
-
-const fbMockKittens = [
-    {id: 0, name: "frisky", image: "www.image.com"},
-    {id: 1, name: "terrence", image: "www.image.com"},
-    {id: 2, name: "mini", image: "www.image.com"},
-    {id: 3, name: "kay", image: "www.image.com"},
-    {id: 4, name: "mr bigglesworth", image: "www.image.com"},
-];
-
 class Lists extends Component {
   constructor(props) {
     super(props);
@@ -29,16 +13,22 @@ class Lists extends Component {
   state = {
     showAddModal: false,
     animal: "",
+    dogs: [],
+    cats: [],
   }
 
   componentWillMount() {
+    // Fetch dog and cat arrays
     let dogs = fetchDogs();
     let cats = fetchCats();
 
-    console.log(dogs);
-    console.log(cats);
+    this.setState({
+      dogs: dogs,
+      cats: cats,
+    });
   }
 
+  // Add dog and cat arrays to component state
   toggleAddModal = (animal) => {
     this.setState(prevState => ({
       showAddModal: !prevState.showAddModal,
@@ -50,11 +40,11 @@ class Lists extends Component {
     return (
       <div className="Lists">
         <Col xs={6} md={4}>
-          <List listName={"Dogs"} listData={fbMockPuppies} toggleAddModal={this.toggleAddModal} />
+          <List listName={"Dogs"} listData={this.state.dogs} toggleAddModal={this.toggleAddModal} />
         </Col>
 
         <Col xs={6} md={4}>
-          <List listName={"Cats"} listData={fbMockKittens} toggleAddModal={this.toggleAddModal} />
+          <List listName={"Cats"} listData={this.state.cats} toggleAddModal={this.toggleAddModal} />
         </Col>
 
         <AddModal {...this.state} toggleAddModal={this.toggleAddModal} />
