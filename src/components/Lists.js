@@ -50,7 +50,7 @@ class Lists extends Component {
     return (
       <div className="Lists">
         <Col xs={6} md={4}>
-          <List listName={"Dogs"} listData={fbMockPuppies} toggleAddModal={this.toggleAddModal.bind(this)} />
+          <List listName={"Dogs"} listData={fbMockPuppies} toggleAddModal={this.toggleAddModal} />
         </Col>
 
         <Col xs={6} md={4}>

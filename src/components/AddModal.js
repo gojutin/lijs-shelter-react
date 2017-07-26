@@ -21,7 +21,7 @@ class AddModal extends Component {
     e.preventDefault();
     const { name, imgUrl } = this.state;
 
-    addAnimal(name, imgUrl)
+    addAnimal(name, imgUrl, this.props.animal)
       .then(() => {
         this.clearForm();
       })
