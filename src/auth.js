@@ -23,3 +23,4 @@ export function resetPassword (email) {
 }
 
 export const currentUser = firebaseAuth().currentUser;
+

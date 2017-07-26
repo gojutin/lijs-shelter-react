@@ -1,9 +1,9 @@
-import firebase from 'firebase'
+import firebase from 'firebase';
 
-let dogsRef = firebase.database().ref('/dogs');
-let catsRef = firebase.database().ref('cats');
-let newCatRef = catsRef.push();
-let newDogRef = dogsRef.push();
+const db = firebase.database();
+
+let dogsRef = db.ref('dogs');
+let catsRef = db.ref('cats');
 
 export function fetchDogs() {
   dogsRef.on('value', snapshot => {
@@ -18,16 +18,15 @@ export function fetchCats() {
 }
 
 export function addAnimal(name, imgUrl, animal) {
-  if(animal === "dogs") {
-    return newDogRef.set({
+  if (animal === "Dogs") {
+    return dogsRef.push({
+      name,
+      imgUrl,
+    })
+  } else {
+    return catsRef.push({
       name,
       imgUrl,
     })
   }
-
-  return newCatRef.set({
-    name,
-    imgUrl,
-  })
-
 }
